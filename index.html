@@ -10,30 +10,16 @@ button { padding: 10px 15px; margin-top: 10px; }
 </style>
 </head>
 <body>
-<h2>RAG Chatbot</h2>
-<div class="chat-box" id="chat"></div>
-<input type="text" id="message" placeholder="Ask something...">
-<button onclick="sendMessage()">Send</button>
+<h3>RAG Chatbot Testing</h3>
 
-<script>
-async function sendMessage() {
-    const msg = document.getElementById("message").value;
-    if (!msg) return;
-    document.getElementById("chat").innerHTML += `<p><b>You:</b> ${msg}</p>`;
-    document.getElementById("message").value = "";
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
-    try {
-    const res = await fetch("https://haseebkhalid.app.n8n.cloud/webhook/c4727760-4835-45c8-a3de-b143635a4d3a/chat", { ... });
-    const data = await res.json();
-    document.getElementById("chat").innerHTML += `<p><b>Bot:</b> ${data.answer || "No response"}</p>`;
-    } catch (err) {
-        document.getElementById("chat").innerHTML += `<p><b>Bot:</b> Error: ${err.message}</p>`;
-    }
-    
-}
+	createChat({
+		webhookUrl: 'https://haseebkhalid.app.n8n.cloud/webhook/c4727760-4835-45c8-a3de-b143635a4d3a/chat'
+	});
 </script>
+
 </body>
-
 </html>
-
-
