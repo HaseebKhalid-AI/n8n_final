@@ -23,7 +23,7 @@ async function sendMessage() {
     document.getElementById("message").value = "";
 
     try {
-    const res = await fetch("https://haseebkhalid.app.n8n.cloud/webhook-test/7dfcd9fa-7857-45cb-8040-e08d425ce824", { ... });
+    const res = await fetch("https://haseebkhalid.app.n8n.cloud/webhook/c4727760-4835-45c8-a3de-b143635a4d3a/chat", { ... });
     const data = await res.json();
     document.getElementById("chat").innerHTML += `<p><b>Bot:</b> ${data.answer || "No response"}</p>`;
     } catch (err) {
@@ -35,4 +35,5 @@ async function sendMessage() {
 </body>
 
 </html>
+
 
