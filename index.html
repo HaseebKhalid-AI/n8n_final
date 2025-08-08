@@ -22,15 +22,17 @@ async function sendMessage() {
     document.getElementById("chat").innerHTML += `<p><b>You:</b> ${msg}</p>`;
     document.getElementById("message").value = "";
 
-    const res = await fetch("https://haseebkhalid.app.n8n.cloud/webhook-test/7dfcd9fa-7857-45cb-8040-e08d425ce824", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: msg })
-    });
+    try {
+    const res = await fetch("https://haseebkhalid.app.n8n.cloud/webhook-test/7dfcd9fa-7857-45cb-8040-e08d425ce824", { ... });
     const data = await res.json();
     document.getElementById("chat").innerHTML += `<p><b>Bot:</b> ${data.answer || "No response"}</p>`;
+    } catch (err) {
+        document.getElementById("chat").innerHTML += `<p><b>Bot:</b> Error: ${err.message}</p>`;
+    }
+    
 }
 </script>
 </body>
 
 </html>
+
